@@ -1,0 +1,20 @@
+/* GadgetPulse simple responsive style */
+:root{--max-width:980px;--accent:#0b84ff;--muted:#666}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,Arial,sans-serif;margin:0;color:#111;line-height:1.5}
+.container{max-width:var(--max-width);margin:0 auto;padding:20px}
+.site-header{background:#fff;border-bottom:1px solid #eee}
+.site-header .container{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-weight:700}
+.site-nav a{margin-left:16px;text-decoration:none;color:var(--muted)}
+.main-grid{display:grid;grid-template-columns:1fr 320px;gap:24px;padding-top:24px}
+.hero{padding:24px;background:linear-gradient(180deg,#f7fbff,#fff);border-radius:10px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.card{padding:12px;border:1px solid #eee;border-radius:8px}
+.sidebar .widget{padding:12px;border:1px solid #f0f0f0;border-radius:8px;margin-bottom:12px}
+.post-article{max-width:700px;margin:40px auto}
+.post-meta{color:var(--muted);font-size:0.9rem}
+.post-list{list-style:none;padding:0}
+.post-list li{padding:8px 0;border-bottom:1px solid #f0f0f0}
+.site-footer{padding:24px 0;text-align:center;color:var(--muted);border-top:1px solid #f0f0f0;margin-top:40px}
+@media(max-width:880px){.main-grid{grid-template-columns:1fr;}.site-nav{display:none}}
