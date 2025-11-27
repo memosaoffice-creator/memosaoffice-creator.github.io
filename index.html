@@ -7,19 +7,39 @@
   <meta name="description" content="GadgetPulse — Honest smartphone and gadget reviews, buying guides, comparisons and how-to fixes.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/style.css">
-  <!-- Replace MEASUREMENT_ID with your Google Analytics 4 measurement id (G-XXXX) if you have one -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=MEASUREMENT_ID"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
-    gtag('config', 'MEASUREMENT_ID');
-  </script> -->
+
+  <style>
+    .hamburger {position: fixed; top: 20px; right: 20px; width: 35px; height: 28px; cursor: pointer; z-index: 999; display: none; flex-direction: column; justify-content: space-between;}
+    .bar {width: 100%; height: 4px; background: white; border-radius: 10px; transition: 0.4s;}
+    .hamburger.active .bar:nth-child(1){transform: translateY(12px) rotate(45deg);} 
+    .hamburger.active .bar:nth-child(2){opacity: 0;} 
+    .hamburger.active .bar:nth-child(3){transform: translateY(-12px) rotate(-45deg);} 
+    .side-menu {position: fixed; top: 0; right: -300px; width: 240px; height: 100vh; background: rgba(20,20,20,0.95); padding-top: 100px; padding-left: 20px; transition: 0.5s ease; backdrop-filter: blur(14px); z-index: 998;} 
+    .side-menu.active {right: 0;} 
+    .side-menu a {display: block; margin: 20px 0; font-size: 20px; text-decoration: none; color: #fff; transition: 0.3s;} 
+    .side-menu a:hover {color: #0ef; transform: translateX(8px);} 
+
+    @media(max-width: 820px){ .hamburger{display:flex;} .site-nav{display:none;} }
+  </style>
 </head>
 <body>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <div class="side-menu" id="menu">
+    <a href="/">Home</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+
   <header class="site-header">
     <div class="container">
       <a class="logo" href="/">
-        <!-- inline svg logo fallback -->
         <img src="/assets/logo.svg" alt="GadgetPulse logo" width="40" height="40"> <span>GadgetPulse</span>
       </a>
       <nav class="site-nav">
@@ -79,6 +99,10 @@
       <p>&copy; GadgetPulse — Smart gadget reviews. Built with GitHub Pages.</p>
     </div>
   </footer>
+
+  <script>
+    function toggleMenu(){document.querySelector('.hamburger').classList.toggle('active'); document.getElementById('menu').classList.toggle('active');}
+  </script>
 
 </body>
 </html>
