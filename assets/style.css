@@ -238,11 +238,21 @@ body {
   border-radius: 16px;
   box-shadow: var(--glass-shadow);
 }
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 30px rgba(0,0,0,0.35);
+/* Featured posts links */
+.card {
+    color: #ffffff !important;       /* Normal link color = white */
+    text-decoration: none;           /* Optional: remove underline */
 }
+
+.card a:visited {
+    color: #ffffff !important;       /* Visited link stays white */
+}
+
+.card a:hover {
+    color: #ffffff !important;       /* Optional: hover stays white */
+    text-decoration: underline;      /* Optional: add underline on hover */
+}
+
 
 /* ======================
    Sidebar
