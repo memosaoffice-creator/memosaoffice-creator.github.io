@@ -203,11 +203,11 @@ background-attachment: fixed;
   margin-top: 18px;
   padding: 14px 28px;
   background: var(--accent);
-  color:rgba(11,132,255,0.5);
+  color: #0b84ff80;
   border-radius: 12px;
   text-decoration: none;
   font-weight: 600;
-  box-shadow: 0 8px 20px rgba(11,132,255,0.5); /* blue glow */
+  box-shadow: 0 8px 20px #0b84ff80; /* blue glow */
 }
 
 .hero .cta a:hover {
