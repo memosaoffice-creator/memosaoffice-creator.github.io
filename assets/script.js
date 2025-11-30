@@ -31,7 +31,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 // aluth post daddi methana update krpn
 
-// List of posts (you can expand it as you add more posts)
 const posts = [
   {
     title: "How to Speed Up a Slow Android Phone",
@@ -52,16 +51,16 @@ posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
 const latestContainer = document.getElementById("latestPostsContainer");
 
-// Inject only the newest post
-if(posts.length > 0){
-  const post = posts[0]; // newest
-  latestContainer.innerHTML = `
+// Inject the 2 newest posts
+latestContainer.innerHTML = ""; // clear first
+posts.slice(0,2).forEach(post => {
+  latestContainer.innerHTML += `
     <article class="card">
       <a href="${post.url}"><h3>${post.title}</h3></a>
       <p>${post.desc}</p>
     </article>
   `;
-}
+});
 
 // =======================
 // SHINY HOVER EFFECT ON CARDS
