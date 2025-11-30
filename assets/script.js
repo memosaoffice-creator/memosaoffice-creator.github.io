@@ -29,6 +29,39 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+// aluth post daddi methana update krpn
+
+// List of posts (you can expand it as you add more posts)
+const posts = [
+  {
+    title: "How to Speed Up a Slow Android Phone",
+    url: "/posts/sample-post-2.html",
+    desc: "Simple steps to make your phone snappy again — no tech degree required.",
+    date: "2025-11-27"
+  },
+  {
+    title: "Best Phones Under $300 (2025) — Top Picks",
+    url: "/posts/sample-post-1.html",
+    desc: "Affordable phones that punch above their weight — battery, camera and value-tested.",
+    date: "2025-11-26"
+  }
+];
+
+// Sort posts by date (newest first)
+posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+const latestContainer = document.getElementById("latestPostsContainer");
+
+// Inject only the newest post
+if(posts.length > 0){
+  const post = posts[0]; // newest
+  latestContainer.innerHTML = `
+    <article class="card">
+      <a href="${post.url}"><h3>${post.title}</h3></a>
+      <p>${post.desc}</p>
+    </article>
+  `;
+}
 
 // =======================
 // SHINY HOVER EFFECT ON CARDS
