@@ -14,6 +14,72 @@
   --text: #e9f1ff;
 }
 
+/* ======================
+   Glass Footer
+====================== */
+.site-footer {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.2);
+  border-radius: 20px 20px 0 0;
+  padding: 40px 20px;
+  color: #000;
+  margin-top: 40px;
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.footer-info h3 {
+  margin-top: 0;
+  color: #0b84ff;
+}
+
+.footer-link {
+  color: #0b84ff;
+  text-decoration: underline;
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+  text-shadow: 0 0 10px #0b84ff;
+}
+
+.footer-social h4 {
+  margin-bottom: 10px;
+  color: #0b84ff;
+}
+
+.social-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background: rgba(11,132,255,0.2);
+  color: #0b84ff;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background: rgba(11,132,255,0.4);
+  box-shadow: 0 0 15px #0b84ff;
+  transform: translateY(-2px);
+}
+
+@media(max-width: 780px) {
+  .footer-grid { flex-direction: column; align-items: flex-start; }
+}
+
+
 #searchInput {
     color: #000;             /* Text color black */
 }
