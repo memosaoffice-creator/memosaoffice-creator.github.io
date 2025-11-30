@@ -1,7 +1,7 @@
 // Your website articles (title + link + short description)
 const articles = [
-    { title: "How to Speed Up Your Android Phone", url: "post1.html", desc: "Simple steps to make Android faster." },
-    { title: "iPhone Battery Drain Fix", url: "post2.html", desc: "Tips to improve iPhone battery life." },
+    { title: "How to Speed Up Your Android Phone", url: "posts/sample-post-1.html", desc: "Simple steps to make Android faster." },
+    { title: "iPhone Battery Drain Fix", url: "sample-post-2.html", desc: "Tips to improve iPhone battery life." },
     { title: "Best Apps for Students", url: "post3.html", desc: "Top study and productivity apps." },
     { title: "How to Use Google Drive", url: "post4.html", desc: "Guide to using Google Drive properly." }
 ];
