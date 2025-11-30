@@ -14,6 +14,14 @@
   --text: #e9f1ff;
 }
 
+#searchInput {
+    color: #000;             /* Text color black */
+}
+
+#searchInput::placeholder {
+    color: #555;             /* Placeholder color dark grey */
+}
+
 * {
   box-sizing: border-box;
   transition: all .35s ease;
