@@ -76,8 +76,9 @@
     <aside class="sidebar">
       <div class="widget">
         <h4>Search</h4>
-        <input placeholder="Search site (CTRL+F also works)" aria-label="search">
-      </div>
+       <input id="searchInput" placeholder="Search site (CTRL+F also works)" aria-label="search" oninput="searchArticles()">
+<div id="results"></div>
+
 
       <div class="widget">
         <h4>Categories</h4>
