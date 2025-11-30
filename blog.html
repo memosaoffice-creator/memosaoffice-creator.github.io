@@ -1,55 +1,143 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <script src="search.js"></script>
+  <script src="/assets/search.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Blog — GadgetPulse</title>
   <meta name="description" content="GadgetPulse blog list: reviews, comparisons, and how-to guides for smartphones and gadgets.">
   <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    /* ======================
+       Glass Cards for Blog
+    ======================= */
+    .section-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .blog-card {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(14px);
+      border-radius: 18px;
+      padding: 20px;
+      color: #000;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .blog-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .blog-card p {
+      font-size: 0.95rem;
+      color: #222;
+      flex-grow: 1;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(11,132,255,0.6);
+    }
+
+    .search-widget {
+      margin-bottom: 30px;
+    }
+
+    .search-widget input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: #000;
+      font-size: 1rem;
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
+
   <header class="site-header">
     <div class="container">
       <a class="logo" href="/"><img src="/assets/logo.svg" alt="GadgetPulse"> <span>GadgetPulse</span></a>
       <nav class="site-nav">
         <a href="/">Home</a>
         <a href="/blog.html">Blog</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <h1>All Posts</h1>
-    <div class="widget search-widget">
-  <h4>Search</h4>
-  <div class="search-container">
-    <input id="searchInput" placeholder="Search site..." aria-label="search" oninput="searchArticles()">
-    <div id="results"></div>
-  </div>
-</div>
+    <!-- Search Bar -->
+    <div class="search-widget">
+      <input id="searchInput" type="text" placeholder="Search articles..." onkeyup="searchArticles()">
+      <div id="results"></div>
+    </div>
 
-
+    <!-- Reviews Section -->
     <section id="reviews">
       <h2>Reviews</h2>
-      <ul class="post-list">
-        <li><a href="/posts/sample-post-1.html">Best Phones Under $300 (2025) — Top Picks</a></li>
-      </ul>
+      <div class="section-cards">
+        <!-- Example Card -->
+        <a href="/posts/sample-post-1.html" class="blog-card">
+          <img src="/assets/sample-review1.jpg" alt="Review Image">
+          <h3>Best Phones Under $300 (2025)</h3>
+          <p>Affordable phones that punch above their weight — battery, camera and value-tested.</p>
+        </a>
+
+        <!-- Add more cards below -->
+        <a href="/posts/sample-post-3.html" class="blog-card">
+          <img src="/assets/sample-review2.jpg" alt="Review Image">
+          <h3>iPhone Battery Drain Fix</h3>
+          <p>Tips to improve iPhone battery life and extend device lifespan.</p>
+        </a>
+      </div>
     </section>
 
-    <section id="guides">
+    <!-- Guides Section -->
+    <section id="guides" style="margin-top:50px;">
       <h2>Guides</h2>
-      <ul class="post-list">
-        <li><a href="/posts/sample-post-2.html">How to Speed Up a Slow Android Phone</a></li>
-      </ul>
-    </section>
+      <div class="section-cards">
+        <!-- Example Card -->
+        <a href="/posts/sample-post-2.html" class="blog-card">
+          <img src="/assets/sample-guide1.jpg" alt="Guide Image">
+          <h3>How to Speed Up a Slow Android Phone</h3>
+          <p>Simple steps to make your phone snappy again — no tech degree required.</p>
+        </a>
 
+        <a href="/posts/sample-post-4.html" class="blog-card">
+          <img src="/assets/sample-guide2.jpg" alt="Guide Image">
+          <h3>How to Use Google Drive Efficiently</h3>
+          <p>Learn the best tips and tricks to manage your files and collaborate online.</p>
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; GadgetPulse</p>
+      <p>&copy; GadgetPulse — Smart gadget reviews. Built with GitHub Pages.</p>
     </div>
   </footer>
+
 </body>
 </html>
