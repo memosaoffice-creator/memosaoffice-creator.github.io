@@ -29,52 +29,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
-// aluth post daddi methana update krpn
-
-const posts = [
-  {
-    title: "How to Speed Up a Slow Android Phone",
-    url: "/posts/sample-post-2.html",
-    desc: "Simple steps to make your phone snappy again — no tech degree required.",
-    date: "2025-11-27"
-  },
-  {
-    title: "Best Phones Under $300 (2025) — Top Picks",
-    url: "/posts/sample-post-1.html",
-    desc: "Affordable phones that punch above their weight — battery, camera and value-tested.",
-    date: "2025-11-26"
-  }
-];
-
-// Sort posts by date (newest first)
-posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-const latestContainer = document.getElementById("latestPostsContainer");
-
-// Inject the 2 newest posts
-latestContainer.innerHTML = ""; // clear first
-posts.slice(0,2).forEach(post => {
-  latestContainer.innerHTML += `
-    <article class="card">
-      <a href="${post.url}"><h3>${post.title}</h3></a>
-      <p>${post.desc}</p>
-    </article>
-  `;
-});
-
-// =======================
-// SHINY HOVER EFFECT ON CARDS
-// =======================
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    card.style.setProperty('--mouse-x', `${x}px`);
-    card.style.setProperty('--mouse-y', `${y}px`);
-  });
-});
 
 // =======================
 // SCROLL FADE-IN ANIMATION
@@ -90,3 +44,73 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.2 });
 
 fadeEls.forEach(el => observer.observe(el));
+
+//uda thiyenne lassana karana ewa
+
+
+// LATEST POSTS INJECTION
+function loadLatestPosts() {
+    const container = document.getElementById("latestPostsContainer");
+    if (!container) return;
+
+    fetch("/posts/posts.json")
+        .then(response => response.json())
+        .then(posts => {
+            // Sort posts by date descending
+            posts.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+            // Take first 2 posts for latest
+            const latest = posts.slice(0, 2);
+
+            latest.forEach(post => {
+                container.innerHTML += `
+                    <div class="card">
+                        <a href="${post.url}">
+                            <img src="${post.image || '/assets/logo.svg'}" alt="${post.title}" style="width:100%; border-radius:12px;">
+                            <h3>${post.title}</h3>
+                            <p>${post.desc}</p>
+                        </a>
+                    </div>
+                `;
+            });
+        })
+        .catch(err => console.error("Failed to load latest posts:", err));
+}
+
+// Call the function after DOM is loaded
+document.addEventListener("DOMContentLoaded", loadLatestPosts);
+
+// BLOG POSTS INJECTION
+function loadBlogPosts() {
+    fetch("/posts/posts.json")
+        .then(response => response.json())
+        .then(posts => {
+            const reviewsContainer = document.getElementById("reviewsContainer");
+            const guidesContainer = document.getElementById("guidesContainer");
+            if (!reviewsContainer || !guidesContainer) return;
+
+            // Separate posts by category
+            posts.forEach(post => {
+                const cardHTML = `
+                    <div class="card">
+                        <a href="${post.url}">
+                            <img src="${post.image || '/assets/logo.svg'}" alt="${post.title}" style="width:100%; border-radius:12px;">
+                            <h3>${post.title}</h3>
+                            <p>${post.desc}</p>
+                        </a>
+                    </div>
+                `;
+
+                if(post.category && post.category.toLowerCase() === "reviews") {
+                    reviewsContainer.innerHTML += cardHTML;
+                } else if(post.category && post.category.toLowerCase() === "guides") {
+                    guidesContainer.innerHTML += cardHTML;
+                }
+            });
+        })
+        .catch(err => console.error("Failed to load blog posts:", err));
+}
+
+// Call the function after DOM is loaded
+document.addEventListener("DOMContentLoaded", loadBlogPosts);
+
