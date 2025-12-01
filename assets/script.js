@@ -89,7 +89,14 @@ function loadBlogPosts() {
             const guidesContainer = document.getElementById("guidesContainer");
             if (!reviewsContainer || !guidesContainer) return;
 
-            // Separate posts by category
+            // Clear any existing content
+            reviewsContainer.innerHTML = "";
+            guidesContainer.innerHTML = "";
+
+            // Sort posts by date descending (optional)
+            posts.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+            // Add cards
             posts.forEach(post => {
                 const cardHTML = `
                     <div class="card">
@@ -113,4 +120,3 @@ function loadBlogPosts() {
 
 // Call the function after DOM is loaded
 document.addEventListener("DOMContentLoaded", loadBlogPosts);
-
