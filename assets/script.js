@@ -83,20 +83,21 @@ document.addEventListener("DOMContentLoaded", loadLatestPosts);
 // BLOG POSTS INJECTION
 function loadBlogPosts() {
     fetch("/posts/posts.json")
-        .then(response => response.json())
+        .then(res => res.json())
         .then(posts => {
+            console.log("Posts loaded:", posts); // check in console
             const reviewsContainer = document.getElementById("reviewsContainer");
             const guidesContainer = document.getElementById("guidesContainer");
-            if (!reviewsContainer || !guidesContainer) return;
+            if (!reviewsContainer || !guidesContainer) {
+                console.error("Containers not found!");
+                return;
+            }
 
-            // Clear any existing content
             reviewsContainer.innerHTML = "";
             guidesContainer.innerHTML = "";
 
-            // Sort posts by date descending (optional)
             posts.sort((a,b) => new Date(b.date) - new Date(a.date));
 
-            // Add cards
             posts.forEach(post => {
                 const cardHTML = `
                     <div class="card">
@@ -108,15 +109,16 @@ function loadBlogPosts() {
                     </div>
                 `;
 
-                if(post.category && post.category.toLowerCase() === "reviews") {
+                if(post.category && post.category.toLowerCase().trim() === "reviews") {
                     reviewsContainer.innerHTML += cardHTML;
-                } else if(post.category && post.category.toLowerCase() === "guides") {
+                } else if(post.category && post.category.toLowerCase().trim() === "guides") {
                     guidesContainer.innerHTML += cardHTML;
+                } else {
+                    console.warn("Post skipped (invalid category):", post.title);
                 }
             });
         })
         .catch(err => console.error("Failed to load blog posts:", err));
 }
 
-// Call the function after DOM is loaded
 document.addEventListener("DOMContentLoaded", loadBlogPosts);
