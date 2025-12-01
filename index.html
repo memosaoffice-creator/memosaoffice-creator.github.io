@@ -61,10 +61,9 @@
 
     <section class="latest-posts">
   <h2>Latest Posts</h2>
-  <div class="cards" id="latestPostsContainer">
-    <!-- Latest post card will be injected here -->
-  </div>
+  <div class="cards" id="latestPostsContainer"></div>
 </section>
+
 
 
     <aside class="sidebar">
@@ -95,6 +94,31 @@
     </div>
   </div>
 </footer>
+
+<script>
+fetch('/posts/posts.json')
+  .then(res => res.json())
+  .then(data => {
+    // Sort newest first
+    const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Show latest 2
+    const latest = sorted.slice(0, 2);
+
+    const container = document.getElementById("latestPostsContainer");
+
+    latest.forEach(post => {
+      container.innerHTML += `
+        <div class="card" style="padding:20px; border-radius:20px; backdrop-filter: blur(15px); background: rgba(255,255,255,0.15); box-shadow:0 8px 25px rgba(0,0,0,0.15); transition:0.3s;">
+          <img src="${post.image}" alt="${post.title}" style="width:100%; border-radius:16px; margin-bottom:12px;">
+          <h3>${post.title}</h3>
+          <p>${post.desc}</p>
+          <a href="${post.url}" class="read-more-btn">Read More →</a>
+        </div>
+      `;
+    });
+  });
+</script>
 
 
 
