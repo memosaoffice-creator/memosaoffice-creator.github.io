@@ -1,27 +1,31 @@
 // DYNAMIC SEARCH USING posts.json
-let articles = []; // will be filled from posts.json
+let articles = []; // Will be populated from posts.json
 
-// Fetch posts.json dynamically
+// Fetch posts from posts.json
 fetch("/posts/posts.json")
-  .then(response => response.json())
-  .then(data => {
-    articles = data; // populate articles array
-  })
-  .catch(err => console.error("Failed to load posts.json:", err));
+    .then(res => res.json())
+    .then(posts => {
+        // Convert each post to article format
+        articles = posts.map(post => ({
+            title: post.title,
+            url: post.url,
+            desc: post.desc
+        }));
+    })
+    .catch(err => console.error("Failed to load posts for search:", err));
 
 // Search function
 function searchArticles() {
-    let input = document.getElementById("searchInput");
-    let resultsDiv = document.getElementById("results");
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const resultsDiv = document.getElementById("results");
+    if (!resultsDiv) return;
 
-    if (!input || !resultsDiv) return;
-
-    let query = input.value.toLowerCase();
+    // Clear previous results
     resultsDiv.innerHTML = "";
 
-    let filtered = articles.filter(item =>
-        item.title.toLowerCase().includes(query) ||
-        item.desc.toLowerCase().includes(query)
+    const filtered = articles.filter(item =>
+        item.title.toLowerCase().includes(input) ||
+        item.desc.toLowerCase().includes(input)
     );
 
     if (filtered.length === 0) {
@@ -31,9 +35,9 @@ function searchArticles() {
 
     filtered.forEach(item => {
         resultsDiv.innerHTML += `
-            <div style="margin-bottom:15px; padding:10px; border:1px solid #ddd; border-radius:8px;">
-                <a href="${item.url}" style="font-size:18px; font-weight:bold;">${item.title}</a>
-                <p>${item.desc}</p>
+            <div style="margin-bottom:15px; padding:10px; border:1px solid #ddd; border-radius:8px; background: rgba(255,255,255,0.1);">
+                <a href="${item.url}" style="font-size:18px; font-weight:bold; color: #fff;">${item.title}</a>
+                <p style="color:#ddd;">${item.desc}</p>
             </div>
         `;
     });
