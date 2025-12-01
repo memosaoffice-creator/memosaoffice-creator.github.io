@@ -1,26 +1,29 @@
-// Your website articles (title + link + short description)
-const articles = [
-    { title: "How to Speed Up Your Android Phone", url: "posts/sample-post-1.html", desc: "Simple steps to make Android faster." },
-    { title: "iPhone Battery Drain Fix", url: "sample-post-2.html", desc: "Tips to improve iPhone battery life." },
-    { title: "Best Apps for Students", url: "post3.html", desc: "Top study and productivity apps." },
-    { title: "How to Use Google Drive", url: "post4.html", desc: "Guide to using Google Drive properly." }
-];
+// DYNAMIC SEARCH USING posts.json
+let articles = []; // will be filled from posts.json
+
+// Fetch posts.json dynamically
+fetch("/posts/posts.json")
+  .then(response => response.json())
+  .then(data => {
+    articles = data; // populate articles array
+  })
+  .catch(err => console.error("Failed to load posts.json:", err));
 
 // Search function
 function searchArticles() {
-    let input = document.getElementById("searchInput").value.toLowerCase();
+    let input = document.getElementById("searchInput");
     let resultsDiv = document.getElementById("results");
 
-    // Clear results
+    if (!input || !resultsDiv) return;
+
+    let query = input.value.toLowerCase();
     resultsDiv.innerHTML = "";
 
-    // Filter articles
     let filtered = articles.filter(item =>
-        item.title.toLowerCase().includes(input) ||
-        item.desc.toLowerCase().includes(input)
+        item.title.toLowerCase().includes(query) ||
+        item.desc.toLowerCase().includes(query)
     );
 
-    // Display results
     if (filtered.length === 0) {
         resultsDiv.innerHTML = "<p>No results found.</p>";
         return;
